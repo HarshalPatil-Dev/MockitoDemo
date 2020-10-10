@@ -28,10 +28,13 @@ public class LoginTest {
 
     @Test
     public void Empty_UserNameTest(){
+        //Arrange
         ArgumentCaptor<Integer> ac = ArgumentCaptor.forClass(Integer.class);
+        //Act
         when(loginView.getUserName()).thenReturn("");
         when(loginView.getPassword()).thenReturn("HarshalPatil");
         SUT.onLoginClick();
+        //Assert
         verify(loginView,times(1)).showMessage(ac.capture());
         Assert.assertThat(ac.getValue(),is(R.string.error_empty_username));
 
